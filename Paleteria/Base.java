@@ -4,5 +4,3 @@ package Paleteria;
 interface Base {
     String getTipoBase();
 }
-
-

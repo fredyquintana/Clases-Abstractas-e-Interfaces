@@ -1,11 +1,16 @@
 package Personajes;
 
-// Abstract class Character
-abstract class Personajes {
+// Interfaz genérica para las habilidades de un personaje
+interface Habilidades<T> {
+    void usarHabilidad(T habilidad);
+}
+
+// Clase abstracta Character
+abstract class Personaje {
     protected String nombre;
     protected int nivel;
 
-    public Personajes(String nombre, int nivel) {
+    public Personaje(String nombre, int nivel) {
         this.nombre = nombre;
         this.nivel = nivel;
     }
@@ -13,23 +18,15 @@ abstract class Personajes {
     public abstract void atacar();
 }
 
-//MagicalAbilities Interface
-interface HabilidadesMagicas {
-    void usarMagia();
-}
-
-// PhysicalSkills Interface
-interface HabilidadesFisicas {
-    void usarHabilidadFisica();
-}
-
-// Player class that inherits from Character and implements the interfaces
-class Jugador extends Personajes implements HabilidadesMagicas, HabilidadesFisicas {
+// Clase Player que hereda de Character y aplica la interfaz genérica
+class Jugador<T> extends Personaje {
     private String clase;
+    private T habilidad;
 
-    public Jugador(String nombre, int nivel, String clase) {
+    public Jugador(String nombre, int nivel, String clase, T habilidad) {
         super(nombre, nivel);
         this.clase = clase;
+        this.habilidad = habilidad;
     }
 
     @Override
@@ -37,23 +34,13 @@ class Jugador extends Personajes implements HabilidadesMagicas, HabilidadesFisic
         System.out.println(nombre + " attacks with his weapon.");
     }
 
-    @Override
-    public void usarMagia() {
-        System.out.println(nombre + " use a magical ability.");
-    }
-
-    @Override
-    public void usarHabilidadFisica() {
-        System.out.println(nombre + " uses a physical skill.");
-    }
-
-    public void usarHabilidadEspecial() {
-        System.out.println(nombre + " Use your special ability.");
+    public void usarHabilidad() {
+        System.out.println(nombre + " use a skill: " + habilidad);
     }
 }
 
-// Enemy Class that inherits from Character
-class Enemigo extends Personajes {
+// Clase Enemy que hereda de Character
+class Enemigo extends Personaje {
     private String tipo;
 
     public Enemigo(String nombre, int nivel, String tipo) {
@@ -67,9 +54,11 @@ class Enemigo extends Personajes {
     }
 
     public void gritar() {
-        System.out.println(nombre + " emits a terrifying scream.");
+        System.out.println(nombre + " emits a terrified scream.");
     }
 }
+
+
 
 
 

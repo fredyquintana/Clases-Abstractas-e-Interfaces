@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 // Definition of the abstract class FiguraGeometrica
 abstract class FiguraGeometrica {
     protected String nombre;
@@ -6,7 +8,7 @@ abstract class FiguraGeometrica {
         this.nombre = nombre;
     }
 
-    // Abstract method to calculate the area of ​​the figure
+    // Abstract method to calculate the area of the figure
     public abstract double calcularArea();
 
     public String getNombre() {
@@ -84,3 +86,23 @@ class Triangulo extends FiguraGeometrica implements FiguraBidimensional {
     }
 }
 
+// Generic class to manage and display geometric figures
+class ManejadorFiguras<T extends FiguraGeometrica> {
+    private ArrayList<T> figuras = new ArrayList<>();
+
+    public void agregarFigura(T figura) {
+        figuras.add(figura);
+    }
+
+    public void mostrarFiguras() {
+        for (T figura : figuras) {
+            System.out.println("Type: " + figura.getNombre());
+            System.out.println("Area: " + figura.calcularArea());
+            if (figura instanceof FiguraBidimensional) {
+                FiguraBidimensional figuraBidimensional = (FiguraBidimensional) figura;
+                System.out.println("Perimeter: " + figuraBidimensional.calcularPerimetro());
+            }
+            System.out.println();
+        }
+    }
+}
