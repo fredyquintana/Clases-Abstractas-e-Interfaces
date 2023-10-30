@@ -1,6 +1,5 @@
 package Paleteria;
-
-// Abstract class "Palette" as the base class
+// Abstract class "Palette" as base class
 abstract class Paleta {
     private String sabor;
     private double precio;
@@ -22,7 +21,7 @@ abstract class Paleta {
     public abstract String getInfoPaleta();
 }
 
-// Class "PaletaAgua" that inherits from "Paleta"
+// Class "PaletteWater" that inherits from "Palette"
 class PaletaAgua extends Paleta {
     private boolean baseAgua;
 
@@ -33,8 +32,8 @@ class PaletaAgua extends Paleta {
 
     @Override
     public String getInfoPaleta() {
-        String baseInfo = baseAgua ? "water-based" : "no water-based";
-        return "Flavor palette: " + getSabor() + ", Price: $" + getPrecio() + ", Base: " + baseInfo;
+        String baseInfo = baseAgua ? "water based" : "not water based";
+        return "Flavor: " + getSabor() + ", Price: $" + getPrecio() + ", Base: " + baseInfo;
     }
 }
 
@@ -46,26 +45,6 @@ class PaletaCrema extends Paleta {
 
     @Override
     public String getInfoPaleta() {
-        return "Flavor palette: " + getSabor() + ", Price: $" + getPrecio() + ", Base: Cream";
+        return "Flavor: " + getSabor() + ", Price: $" + getPrecio() + ", Base: Cream";
     }
 }
-
-// Generic class "PaletaGenerica" for different types of paletas
-class PaletaGenerica<T extends Paleta> {
-    private T paleta;
-
-    public PaletaGenerica(T paleta) {
-        this.paleta = paleta;
-    }
-
-    public T getPaleta() {
-        return paleta;
-    }
-
-    public String getInfoPaleta() {
-        return paleta.getInfoPaleta();
-    }
-}
-
-
-

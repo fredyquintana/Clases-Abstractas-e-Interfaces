@@ -105,4 +105,9 @@ class ManejadorFiguras<T extends FiguraGeometrica> {
             System.out.println();
         }
     }
+
+    public ArrayList<T> getFiguras() {
+        return figuras;
+    }
 }
+

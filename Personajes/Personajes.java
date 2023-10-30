@@ -1,6 +1,6 @@
 package Personajes;
 
-// Interfaz genérica para las habilidades de un personaje
+// Generic interface for a character's abilities
 interface Habilidades<T> {
     void usarHabilidad(T habilidad);
 }
@@ -35,7 +35,7 @@ class Jugador<T> extends Personaje {
     }
 
     public void usarHabilidad() {
-        System.out.println(nombre + " use a skill: " + habilidad);
+        System.out.println(nombre + " uses a skill: " + habilidad);
     }
 }
 
